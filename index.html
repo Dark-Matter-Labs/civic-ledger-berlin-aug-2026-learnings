@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Civic Ledger — Berlin Learnings, August 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F2E7;
+    --paper-deep:#EFE9D9;
+    --ink:#201D18;
+    --muted:#6B6455;
+    --rule:#DED5BE;
+    --green:#3E6355;
+    --ochre:#B9812E;
+    --rust:#93402B;
+    --max:740px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Newsreader', serif;
+    font-size:18px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.mono{
+    font-family:'Bricolage Grotesque', sans-serif;
+  }
+  .eyebrow, .stamp, nav a, .toggle-label, .meta, footer .mono{
+    font-family:'IBM Plex Mono', monospace;
+  }
+
+  /* Sticky nav */
+  .sticky-bar{
+    position:sticky; top:0; z-index:50;
+    background:rgba(246,242,231,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--rule);
+    padding:14px 24px;
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:10px;
+  }
+  .wordmark{
+    font-family:'Bricolage Grotesque', sans-serif;
+    font-weight:700; font-size:15px; letter-spacing:0.02em;
+    color:var(--ink); text-decoration:none;
+  }
+  .wordmark span{color:var(--green);}
+  nav{display:flex; gap:18px; flex-wrap:wrap;}
+  nav a{
+    font-size:11px; text-transform:uppercase; letter-spacing:0.08em;
+    color:var(--muted); text-decoration:none; border-bottom:1px solid transparent;
+  }
+  nav a:hover{color:var(--ink); border-bottom-color:var(--ink);}
+  .toggle-wrap{display:flex; align-items:center; gap:8px;}
+  .toggle-label{font-size:11px; text-transform:uppercase; letter-spacing:0.06em; color:var(--muted);}
+  .switch{
+    position:relative; width:36px; height:20px; background:var(--rule);
+    border-radius:20px; cursor:pointer; transition:background 0.2s;
+  }
+  .switch.on{background:var(--green);}
+  .switch::after{
+    content:''; position:absolute; top:2px; left:2px;
+    width:16px; height:16px; border-radius:50%; background:var(--paper);
+    transition:left 0.2s;
+  }
+  .switch.on::after{left:18px;}
+
+  main{max-width:var(--max); margin:0 auto; padding:0 24px;}
+
+  /* Hero */
+  .hero{padding:64px 0 40px; border-bottom:1px solid var(--rule);}
+  .eyebrow{
+    font-size:11px; text-transform:uppercase; letter-spacing:0.1em;
+    color:var(--muted); margin-bottom:18px; display:block;
+  }
+  h1{
+    font-size:42px; line-height:1.12; font-weight:600; margin:0 0 20px;
+    letter-spacing:-0.01em;
+  }
+  .hero p{font-size:19px; color:var(--muted); max-width:580px; margin:0;}
+
+  section{padding:52px 0; border-bottom:1px solid var(--rule);}
+  section:last-of-type{border-bottom:none;}
+  .section-num{
+    font-size:12px; color:var(--green); letter-spacing:0.08em;
+    display:block; margin-bottom:10px;
+  }
+  h2{font-size:26px; font-weight:600; margin:0 0 20px; line-height:1.25;}
+  p{margin:0 0 16px;}
+  .lead{font-size:19px; font-style:italic; color:var(--ink);}
+
+  /* Stamps */
+  .stamp{
+    display:none;
+    font-size:10px; text-transform:uppercase; letter-spacing:0.05em;
+    padding:2px 8px; border-radius:3px; margin-left:8px;
+    vertical-align:middle; white-space:nowrap;
+  }
+  body.show-stamps .stamp{display:inline-block;}
+  .stamp.confirmed{background:rgba(62,99,85,0.14); color:var(--green);}
+  .stamp.progress{background:rgba(185,129,46,0.16); color:var(--ochre);}
+  .stamp.open{background:rgba(147,64,43,0.14); color:var(--rust);}
+
+  /* Object model list */
+  .object-list{list-style:none; margin:24px 0; padding:0;}
+  .object-list li{
+    padding:16px 0; border-top:1px solid var(--rule);
+    display:grid; grid-template-columns:200px 1fr; gap:20px;
+  }
+  .object-list li:last-child{border-bottom:1px solid var(--rule);}
+  .object-name{font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--green); font-weight:500;}
+  .object-desc{font-size:16px; color:var(--ink);}
+
+  /* Guardrails */
+  .guardrail-list{list-style:none; margin:20px 0; padding:0; counter-reset:g;}
+  .guardrail-list li{
+    counter-increment:g;
+    padding:14px 0 14px 40px; position:relative;
+    border-top:1px solid var(--rule); font-size:16px;
+  }
+  .guardrail-list li:last-child{border-bottom:1px solid var(--rule);}
+  .guardrail-list li::before{
+    content:counter(g,decimal-leading-zero);
+    position:absolute; left:0; top:14px;
+    font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--muted);
+  }
+
+  /* Markets */
+  .market-card{
+    border:1px solid var(--rule); border-radius:4px; padding:22px 24px; margin-bottom:16px;
+    background:var(--paper-deep);
+  }
+  .market-card h3{
+    font-family:'Bricolage Grotesque', sans-serif; font-size:18px; margin:0 0 8px;
+    display:flex; align-items:center; flex-wrap:wrap;
+  }
+  .market-card p{font-size:16px; margin:0;}
+  .market-tag{
+    font-family:'IBM Plex Mono', monospace; font-size:10px; text-transform:uppercase;
+    letter-spacing:0.06em; color:var(--muted); display:block; margin-bottom:6px;
+  }
+
+  /* Evidence stat */
+  .stat-block{
+    display:flex; align-items:baseline; gap:16px; margin:24px 0;
+    padding:20px 0; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule);
+  }
+  .stat-num{font-family:'Bricolage Grotesque', sans-serif; font-size:52px; font-weight:700; color:var(--green);}
+  .stat-desc{font-size:15px; color:var(--muted); max-width:420px;}
+
+  /* Asks */
+  .ask{margin-bottom:22px; padding-bottom:22px; border-bottom:1px solid var(--rule);}
+  .ask:last-child{border-bottom:none;}
+  .ask-name{
+    font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--green);
+    text-transform:uppercase; letter-spacing:0.06em; margin-bottom:6px; display:block;
+  }
+  .ask p{font-size:16px; margin:0;}
+
+  /* Footer */
+  footer{padding:48px 0 64px;}
+  footer .mono{font-size:12px; color:var(--muted); letter-spacing:0.03em;}
+  .contact-line{
+    font-family:'Bricolage Grotesque', sans-serif; font-size:22px; font-weight:600;
+    margin:6px 0 24px;
+  }
+  .contact-line a{color:var(--green); text-decoration:none; border-bottom:1px solid var(--green);}
+  .footer-meta{display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-top:32px;}
+
+
+  /* Typology diagram */
+  .plot-wrap{margin:28px 0 8px;}
+  .plot-wrap svg{width:100%; height:auto; display:block;}
+  .axis-title{font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.06em; fill:var(--muted);}
+  .tick-label{font-family:'IBM Plex Mono', monospace; font-size:10px; fill:var(--muted);}
+  .cluster-letter{font-family:'Bricolage Grotesque', sans-serif; font-weight:700; font-size:20px; fill:var(--ink);}
+  .reg-note{font-size:13px; color:var(--muted); margin:8px 0 0;}
+  .reg-key{display:flex; gap:22px; flex-wrap:wrap; margin:14px 0 32px; font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--muted);}
+  .reg-key span{display:inline-flex; align-items:center; gap:6px;}
+  .reg-swatch{width:14px; height:14px; border-radius:50%; display:inline-block; background:var(--green);}
+  .cluster-block{border-top:1px solid var(--rule); padding:18px 0;}
+  .cluster-block:last-child{border-bottom:1px solid var(--rule);}
+  .cluster-head{display:flex; align-items:baseline; gap:10px; margin-bottom:6px;}
+  .cluster-tag{
+    font-family:'Bricolage Grotesque', sans-serif; font-weight:700; font-size:15px;
+    width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    background:var(--paper-deep); border:1px solid var(--rule); flex-shrink:0;
+  }
+  .cluster-name{font-family:'Bricolage Grotesque', sans-serif; font-size:16px; font-weight:600;}
+  .cluster-block p{font-size:15px; margin:0 0 10px; color:var(--muted);}
+  .chip-row{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.02em;
+    padding:4px 10px; border:1px solid var(--rule); border-radius:20px; color:var(--ink);
+    background:var(--paper);
+  }
+
+  @media (max-width:640px){
+    h1{font-size:30px;}
+    .hero{padding:44px 0 28px;}
+    section{padding:36px 0;}
+    .object-list li{grid-template-columns:1fr; gap:6px;}
+    nav{gap:12px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="sticky-bar">
+  <a href="#top" class="wordmark">CIVIC<span>LEDGER</span> · BERLIN LEARNINGS</a>
+  <nav>
+    <a href="#learnings">Learnings</a>
+    <a href="#reframe">Reframe</a>
+    <a href="#guardrails">Guardrails</a>
+    <a href="#typology">Landscape</a>
+    <a href="#markets">Directions</a>
+    <a href="#evidence">Evidence</a>
+  </nav>
+  <div class="toggle-wrap">
+    <span class="toggle-label">Show status</span>
+    <div class="switch" id="stampToggle" role="switch" aria-checked="false" tabindex="0"></div>
+  </div>
+</div>
+
+<main id="top">
+
+  <div class="hero">
+    <span class="eyebrow">Civic Ledger · Berlin Learnings · August 2026</span>
+    <h1>From conditions to computational agreementing</h1>
+    <p>A week of working sessions in Berlin sharpened how we describe Civic Ledger and pointed at where to test it next. This is the condensed version, written for the circle who shaped it.</p>
+  </div>
+
+  <section id="context">
+    <span class="section-num mono">§ 01 · WHAT BERLIN PRODUCED</span>
+    <h2>A week of working through the same question from every angle</h2>
+    <p>Across entity design, licensing, learning systems, and a public evening at Medulla, one question kept returning: what is Civic Ledger actually building, underneath the space bookings and the demo. The answer that emerged is more precise than "permissioning," and it changes how we talk about lead markets, licensing, and what the platform is worth to a partner.</p>
+    <p>This is the condensed version of what we learned, and where it points next.</p>
+  </section>
+
+  <section id="learnings">
+    <span class="section-num mono">§ 02 · KEY LEARNINGS</span>
+    <h2>Four things that shifted this week</h2>
+
+    <h3 style="font-family:'Bricolage Grotesque', sans-serif; font-size:18px; margin:28px 0 8px;">Civic tech needs its own economy</h3>
+    <p>Civic tech currently survives on state funding, philanthropy, or borrowed compute, none of which builds a lasting economy. The argument that came out of Berlin: a viable civic tech economy needs risk-taking capital that does not become extractive over time. One route we're testing directly: a capped, time-bound return, a fixed multiple over a fixed period, after which the underlying technology opens.</p>
+
+    <h3 style="font-family:'Bricolage Grotesque', sans-serif; font-size:18px; margin:28px 0 8px;">Movement and lead market are two different clocks</h3>
+    <p>Building a movement people believe in and building a product with a defined market pull in different directions, and both matter. Mapping value across a spectrum, from critical infrastructure such as hospitals, shelter, and water, through climate resilience spaces, to everyday civic assets, gave us a way to sequence the two rather than choosing between them: prove the deliberation model at low stakes first, then move toward higher value, higher consequence domains.</p>
+
+    <h3 style="font-family:'Bricolage Grotesque', sans-serif; font-size:18px; margin:28px 0 8px;">Fuzzy ruling: not every rule should be fixed</h3>
+    <p>Some rules hold because they give a system stability. Others should update the moment they repeatedly fail. The platform's job is holding that whole spectrum, from static and non-negotiable through to fluid and contextual, rather than collapsing everything into a single binary of allowed or not allowed. The grey zone between permission and refusal is where the negotiation actually happens, not something to design away.</p>
+
+    <h3 style="font-family:'Bricolage Grotesque', sans-serif; font-size:18px; margin:28px 0 8px;">What the licensing session with Till settled</h3>
+    <p>The codebase should open source, and the reason is practical rather than ideological: it is the route into a public body's financial planning. The real asset was never the code. It is the protocol layer, the conditions library, and the trust ledger that build up through use. That distinction, more than any single licence, is what came out of that session.</p>
+  </section>
+
+  <section id="reframe">
+    <span class="section-num mono">§ 03 · THE REFRAME</span>
+    <h2>Computational Agreementing <span class="stamp progress">Team direction, not yet formally adopted</span></h2>
+    <p class="lead">Every space, asset, or regulated domain we've looked at turns out to be the same problem: several parties hold conditions that cannot all be satisfied through one negotiating at a time.</p>
+    <p>Sequential negotiation is the pathology. One party settles with the next, who settles with the next, and by the time the chain closes, the first party's situation has already moved on. Computational Agreementing holds every party's conditions at once and finds the configuration that satisfies the most of them together, then keeps that configuration open to renegotiation as circumstances change.</p>
+    <p>We define it as a constitutionally governed, machine-assisted practice for composing, testing, and recomposing versioned conditional commitments across open fields of human, institutional, and delegated computational agency. The word "agreementing" is deliberate: it names an ongoing practice of composing and reopening, not a single signed event.</p>
+    <p>Four objects carry the architecture:</p>
+    <ul class="object-list">
+      <li><span class="object-name">Agreement field</span><span class="object-desc">The governed environment, institutional and computational, within which parties operate.</span></li>
+      <li><span class="object-name">Agreement frontier</span><span class="object-desc">The set of currently admissible, viable configurations on offer, not one hidden optimum.</span></li>
+      <li><span class="object-name">Agreement configuration</span><span class="object-desc">One inspectable, exactly versioned package of commitments a party can accept.</span></li>
+      <li><span class="object-name">Commitment graph</span><span class="object-desc">The offers, dependencies, and capacity reservations a configuration is built from.</span></li>
+    </ul>
+  </section>
+
+  <section id="guardrails">
+    <span class="section-num mono">§ 04 · GUARDRAILS</span>
+    <h2>What the architecture is not allowed to do</h2>
+    <p>A handful of constitutional guardrails set the limits the system has to hold to, whatever domain it operates in.</p>
+    <ol class="guardrail-list">
+      <li>Every commitment traces to an accountable mandate and an exact version. Nothing changes silently.</li>
+      <li>Faster closure can never come at the cost of a party's practical right to refuse or appeal.</li>
+      <li>The machine layer recommends. It does not authorise.</li>
+      <li>Selective disclosure can narrow what is shown, but never hide liability or externalised harm.</li>
+      <li>The system exposes a range of workable configurations. It does not collapse to one opaque answer.</li>
+    </ol>
+  </section>
+
+  <section id="typology">
+    <span class="section-num mono">§ 05 · THE LANDSCAPE</span>
+    <h2>Where the platform's value actually sits</h2>
+    <p>Every candidate we looked at, from hospital beds to rooftop furniture, sits somewhere on the same two axes: how permanent the asset is, and what it costs when coordination fails. Mapping them together shows why we're starting where we are, and where the platform is headed next.</p>
+
+    <div class="plot-wrap">
+      <svg viewBox="0 0 760 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Scatter plot mapping five clusters of civic infrastructure against permanence of the asset and stakes and failure cost">
+        <defs>
+          <linearGradient id="stakesGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#93402B" stop-opacity="0.10"/>
+            <stop offset="100%" stop-color="#93402B" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+
+        <rect x="60" y="40" width="660" height="360" fill="url(#stakesGradient)"/>
+
+        <!-- gridlines -->
+        <line x1="60" y1="220" x2="720" y2="220" stroke="#DED5BE" stroke-width="1" stroke-dasharray="3,4"/>
+        <line x1="390" y1="40" x2="390" y2="400" stroke="#DED5BE" stroke-width="1" stroke-dasharray="3,4"/>
+
+        <!-- axes -->
+        <line x1="60" y1="40" x2="60" y2="400" stroke="#201D18" stroke-width="1.4"/>
+        <line x1="60" y1="400" x2="720" y2="400" stroke="#201D18" stroke-width="1.4"/>
+
+        <!-- x ticks -->
+        <text x="60" y="420" class="tick-label" text-anchor="start">TEMPORARY &amp; MICRO</text>
+        <text x="390" y="420" class="tick-label" text-anchor="middle">SEMI-PERMANENT</text>
+        <text x="720" y="420" class="tick-label" text-anchor="end">FIXED INFRASTRUCTURE</text>
+        <text x="390" y="442" class="axis-title" text-anchor="middle">PERMANENCE OF THE ASSET →</text>
+
+        <!-- y ticks -->
+        <text x="52" y="404" class="tick-label" text-anchor="end">WELFARE</text>
+        <text x="52" y="224" class="tick-label" text-anchor="end">HIGH-CONSEQUENCE</text>
+        <text x="52" y="48" class="tick-label" text-anchor="end">EXISTENTIAL</text>
+        <text x="24" y="220" class="axis-title" text-anchor="middle" transform="rotate(-90 24 220)">STAKES AND FAILURE COST →</text>
+
+        <!-- Cluster D: micro & temporary spatial infrastructure -->
+        <ellipse cx="139" cy="346" rx="85" ry="50" fill="#3E6355" fill-opacity="0.14" stroke="#3E6355" stroke-width="1.3" stroke-dasharray="4,3"/>
+        <circle cx="139" cy="346" r="15" fill="#F6F2E7" stroke="#3E6355" stroke-width="1.3"/>
+        <text x="139" y="352" class="cluster-letter" text-anchor="middle">D</text>
+
+        <!-- Cluster E: liquid civic assets & solidarity economy -->
+        <ellipse cx="245" cy="274" rx="105" ry="58" fill="#3E6355" fill-opacity="0.20" stroke="#3E6355" stroke-width="1.3" stroke-dasharray="4,3"/>
+        <circle cx="245" cy="274" r="15" fill="#F6F2E7" stroke="#3E6355" stroke-width="1.3"/>
+        <text x="245" y="280" class="cluster-letter" text-anchor="middle">E</text>
+
+        <!-- Cluster B: climate resilience spaces -->
+        <ellipse cx="364" cy="184" rx="130" ry="65" fill="#3E6355" fill-opacity="0.28" stroke="#3E6355" stroke-width="1.4"/>
+        <circle cx="364" cy="184" r="15" fill="#F6F2E7" stroke="#3E6355" stroke-width="1.4"/>
+        <text x="364" y="190" class="cluster-letter" text-anchor="middle">B</text>
+
+        <!-- Cluster C: water and soil systems -->
+        <ellipse cx="588" cy="155" rx="95" ry="48" fill="#3E6355" fill-opacity="0.34" stroke="#3E6355" stroke-width="1.4"/>
+        <circle cx="588" cy="155" r="15" fill="#F6F2E7" stroke="#3E6355" stroke-width="1.4"/>
+        <text x="588" y="161" class="cluster-letter" text-anchor="middle">C</text>
+
+        <!-- Cluster A: emergency critical infrastructure -->
+        <ellipse cx="535" cy="76" rx="170" ry="70" fill="#93402B" fill-opacity="0.20" stroke="#93402B" stroke-width="1.6"/>
+        <circle cx="535" cy="76" r="15" fill="#F6F2E7" stroke="#93402B" stroke-width="1.6"/>
+        <text x="535" y="82" class="cluster-letter" text-anchor="middle">A</text>
+      </svg>
+
+      <div class="reg-key">
+        <span><span class="reg-swatch" style="background:#93402B; opacity:0.9;"></span>heavily regulated</span>
+        <span><span class="reg-swatch" style="background:#3E6355; opacity:0.6;"></span>conditionally regulated</span>
+        <span><span class="reg-swatch" style="background:#3E6355; opacity:0.2; border:1px dashed #3E6355;"></span>lightly regulated</span>
+      </div>
+    </div>
+
+    <div class="cluster-block">
+      <div class="cluster-head"><span class="cluster-tag">A</span><span class="cluster-name">Emergency critical infrastructure</span></div>
+      <p>Existential stakes, heavy regulation, multiple institutional parties, cascading dependencies. Hardest to enter. Highest value if entered correctly.</p>
+      <div class="chip-row">
+        <span class="chip">hospital beds</span>
+        <span class="chip">ICU surge capacity</span>
+        <span class="chip">emergency shelter</span>
+        <span class="chip">bunkers &amp; civil defence</span>
+        <span class="chip">disaster food &amp; housing logistics</span>
+      </div>
+    </div>
+
+    <div class="cluster-block">
+      <div class="cluster-head"><span class="cluster-tag">B</span><span class="cluster-name">Climate resilience spaces</span></div>
+      <p>Growing government mandate, distributed asset holders, no existing coordination tool. The most actionable cluster in the near term.</p>
+      <div class="chip-row">
+        <span class="chip">cooling centres</span>
+        <span class="chip">dynamic heating &amp; cooking spaces</span>
+        <span class="chip">green infrastructure access</span>
+        <span class="chip">neighbourhood climate compacts</span>
+      </div>
+    </div>
+
+    <div class="cluster-block">
+      <div class="cluster-head"><span class="cluster-tag">C</span><span class="cluster-name">Water and soil systems</span></div>
+      <p>Fragmented authority, sequential negotiation, uncoordinated planning. The coordination failure sits well ahead of the infrastructure gap.</p>
+      <div class="chip-row">
+        <span class="chip">water access governance</span>
+        <span class="chip">soil provenance compacts</span>
+        <span class="chip">watershed coordination</span>
+      </div>
+    </div>
+
+    <div class="cluster-block">
+      <div class="cluster-head"><span class="cluster-tag">D</span><span class="cluster-name">Micro and temporary spatial infrastructure</span></div>
+      <p>Low regulatory barrier, fast activation, conditions mostly social rather than legal. Where trust in the deliberation layer gets built first.</p>
+      <div class="chip-row">
+        <span class="chip">flatpack community furniture</span>
+        <span class="chip">modular cooling shelters</span>
+        <span class="chip">rooftop pavilions</span>
+      </div>
+    </div>
+
+    <div class="cluster-block">
+      <div class="cluster-head"><span class="cluster-tag">E</span><span class="cluster-name">Liquid civic assets and solidarity economy</span></div>
+      <p>Informal or semi-formal, trust-dependent, difficult to scale without a conditions layer to hold it.</p>
+      <div class="chip-row">
+        <span class="chip">spare rooms &amp; couches in crisis</span>
+        <span class="chip">community kitchens</span>
+        <span class="chip">immigrant food economies</span>
+        <span class="chip">asset transfer to cooperatives</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="markets">
+    <span class="section-num mono">§ 06 · WHERE WE'RE TESTING IT</span>
+    <h2>Two arcs, running at the same time</h2>
+    <p>Rather than searching for a single lead market, we're running a near-term demonstration alongside a longer commercial arc, with two further directions developing in parallel.</p>
+
+    <div class="market-card">
+      <span class="market-tag">Demonstration · In progress</span>
+      <h3>Berlin cooling and dynamic resilience spaces</h3>
+      <p>Coordinating providers, conditions, and liability for cooling and resilience spaces across a city, alongside a live micro spatial activation pilot already running with RMIT and UTS collaborators in Incheon.</p>
+    </div>
+
+    <div class="market-card">
+      <span class="market-tag">Commercial · Exploring</span>
+      <h3>Climate resilience insurance compacts</h3>
+      <p>Insurers hold capital for climate resilience but cannot currently underwrite it, lacking a way to verify that distributed commitments have been made and kept. This is the verification layer the platform can provide.</p>
+    </div>
+
+    <div class="market-card">
+      <span class="market-tag">Parallel directions · Early</span>
+      <h3>Care, and food and soil provenance</h3>
+      <p>Both surfaced strongly in Berlin as longer-arc directions: distributed, multi-party care coordination, and provenance agreements built from combined data across a supply chain. Neither is a near-term entry point yet, but both are worth developing in the open.</p>
+    </div>
+  </section>
+
+  <section id="evidence">
+    <span class="section-num mono">§ 07 · EARLY EVIDENCE</span>
+    <h2>What the living lab data is already showing</h2>
+    <div class="stat-block">
+      <span class="stat-num mono">0.62</span>
+      <span class="stat-desc">Correlation between deliberation satisfaction and willingness to recommend the platform, the strongest predictor found in the Yongin living lab data, ahead of overall satisfaction or interface quality.</span>
+    </div>
+    <p>The people who use it recommend it because of the experience of negotiating and reaching agreement with each other, not simply because they got access to a space. That is the thing worth building around.</p>
+  </section>
+
+  <footer>
+    <span class="mono">Next Civic Ledger gathering</span>
+    <div class="contact-line">17 to 18 October, Berlin</div>
+    <span class="mono">Get in touch</span>
+    <div class="contact-line" style="font-size:18px;"><a href="mailto:civicledger@darkmatterlabs.org">civicledger@darkmatterlabs.org</a></div>
+    <div class="footer-meta">
+      <span class="mono">Civic Ledger · Dark Matter Labs</span>
+      <span class="mono">Berlin Learnings · August 2026</span>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+  const toggle = document.getElementById('stampToggle');
+  function flip(){
+    const on = document.body.classList.toggle('show-stamps');
+    toggle.classList.toggle('on', on);
+    toggle.setAttribute('aria-checked', on);
+  }
+  toggle.addEventListener('click', flip);
+  toggle.addEventListener('keydown', (e)=>{
+    if(e.key==='Enter'||e.key===' '){ e.preventDefault(); flip(); }
+  });
+</script>
+
+</body>
+</html>
