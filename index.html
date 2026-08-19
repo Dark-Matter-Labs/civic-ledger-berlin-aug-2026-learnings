@@ -210,6 +210,20 @@
     .object-list li{grid-template-columns:1fr; gap:6px;}
     nav{gap:12px;}
   }
+
+  /* V6 compact strategic components */
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:22px 0 8px;}
+  .flow-step{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.02em;padding:7px 10px;border:1px solid var(--rule);border-radius:20px;background:var(--paper-deep);}
+  .flow-arrow{color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:12px;}
+  .diamond-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:22px 0;}
+  .diamond-card{border:1px solid var(--rule);border-radius:4px;padding:18px;background:var(--paper-deep);}
+  .diamond-card h3{font-size:15px;margin:0 0 8px;}
+  .diamond-card p{font-size:14px;line-height:1.5;color:var(--muted);margin:0;}
+  .compact-note{padding:18px 20px;border-left:3px solid var(--green);background:var(--paper-deep);margin:22px 0;}
+  .compact-note p{margin:0;font-size:16px;}
+  .horizon-row{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0;}
+  .horizon-chip{font-family:'IBM Plex Mono',monospace;font-size:11px;padding:5px 9px;border:1px solid var(--rule);border-radius:20px;}
+  @media (max-width:640px){.diamond-grid{grid-template-columns:1fr;}.flow-arrow{display:none;}}
 </style>
 </head>
 <body>
@@ -219,9 +233,11 @@
   <nav>
     <a href="#learnings">Learnings</a>
     <a href="#reframe">Reframe</a>
-    <a href="#guardrails">Guardrails</a>
-    <a href="#typology">Landscape</a>
-    <a href="#markets">Directions</a>
+    <a href="#ruling">Fuzzy ruling</a>
+    <a href="#metadesign">Meta-design</a>
+    <a href="#capabilities">Capabilities</a>
+    <a href="#markets">Lead situations</a>
+    <a href="#economy">Economy</a>
     <a href="#evidence">Evidence</a>
   </nav>
   <div class="toggle-wrap">
@@ -234,228 +250,194 @@
 
   <div class="hero">
     <span class="eyebrow">Civic Ledger · Berlin Learnings · August 2026</span>
-    <h1>From conditions to computational agreementing</h1>
-    <p>A week of working sessions in Berlin sharpened how we describe Civic Ledger and pointed at where to test it next. This is the condensed version, written for the circle who shaped it.</p>
+    <h1>From space permissioning to agreement infrastructure</h1>
+    <p>Berlin clarified Civic Ledger as civic agreement infrastructure: helping plural actors compose distinct mandates, resources, responsibilities and commitments into coordinated action while keeping authority distributed, explicit and revisable.</p>
   </div>
 
   <section id="context">
-    <span class="section-num mono">§ 01 · WHAT BERLIN PRODUCED</span>
-    <h2>A week of working through the same question from every angle</h2>
-    <p>Across entity design, licensing, learning systems, and a public evening at Medulla, one question kept returning: what is Civic Ledger actually building, underneath the space bookings and the demo. The answer that emerged is more precise than "permissioning," and it changes how we talk about lead markets, licensing, and what the platform is worth to a partner.</p>
-    <p>This is the condensed version of what we learned, and where it points next.</p>
+    <span class="section-num mono">§ 01 · WHY BERLIN MATTERED</span>
+    <h2>Civic tech needs structural ambition</h2>
+    <p>Berlin sharpened a political premise: civic tech needs to operate at the level of the infrastructures that shape identity, permission, resources and coordination. Its role is to strengthen distributed capacity to act across institutions, organisations and communities, especially as conditions become more volatile.</p>
+    <p>The resilience question is: <strong>what civic infrastructures can preserve distributed agency across changing political and economic conditions?</strong> Berlin's value was moving repeatedly between that proposition and practice, asking what capabilities are required, where they create material value, and what economy can sustain them.</p>
   </section>
 
   <section id="learnings">
-    <span class="section-num mono">§ 02 · KEY LEARNINGS</span>
-    <h2>Four things that shifted this week</h2>
+    <span class="section-num mono">§ 02 · THREE CONNECTED LEARNINGS</span>
+    <h2>Economy, capability and lead situations</h2>
 
-    <h3 style="font-family:'Bricolage Grotesque', sans-serif; font-size:18px; margin:28px 0 8px;">Civic tech needs its own economy</h3>
-    <p>Civic tech currently survives on state funding, philanthropy, or borrowed compute, none of which builds a lasting economy. The argument that came out of Berlin: a viable civic tech economy needs risk-taking capital that does not become extractive over time. One route we're testing directly: a capped, time-bound return, a fixed multiple over a fixed period, after which the underlying technology opens.</p>
+    <h3 style="font-family:'Bricolage Grotesque', sans-serif; font-size:18px; margin:28px 0 8px;">1. Space is a proving ground for broader coordination</h3>
+    <p>Booking and permissioning give us a low-stakes environment in which to learn the deeper problem: how distributed actors compose legitimate action when their mandates, responsibilities, risks and dependencies differ. The product horizon extends well beyond the booking grammar of Airbnb or Booking.com.</p>
 
-    <h3 style="font-family:'Bricolage Grotesque', sans-serif; font-size:18px; margin:28px 0 8px;">Movement and lead market are two different clocks</h3>
-    <p>Building a movement people believe in and building a product with a defined market pull in different directions, and both matter. Mapping value across a spectrum, from critical infrastructure such as hospitals, shelter, and water, through climate resilience spaces, to everyday civic assets, gave us a way to sequence the two rather than choosing between them: prove the deliberation model at low stakes first, then move toward higher value, higher consequence domains.</p>
+    <h3 style="font-family:'Bricolage Grotesque', sans-serif; font-size:18px; margin:28px 0 8px;">2. The transferable value lies in distributed coordination capability</h3>
+    <p>These capabilities can move between domains: making intent and standing legible; deliberating and verifying across peers; composing differentiated actors, mandates, resources, risks and responsibilities into viable configurations; forming conditional commitments; adapting authorised agreements as conditions change; and learning from outcomes so future rules and possibilities improve.</p>
+    <p><strong>Differentiated composition is central to this architecture:</strong> it allows actors with different forms of authority, knowledge and capacity to become capable of acting together while retaining those differences.</p>
 
-    <h3 style="font-family:'Bricolage Grotesque', sans-serif; font-size:18px; margin:28px 0 8px;">Fuzzy ruling: not every rule should be fixed</h3>
-    <p>Some rules hold because they give a system stability. Others should update the moment they repeatedly fail. The platform's job is holding that whole spectrum, from static and non-negotiable through to fluid and contextual, rather than collapsing everything into a single binary of allowed or not allowed. The grey zone between permission and refusal is where the negotiation actually happens, not something to design away.</p>
-
-    <h3 style="font-family:'Bricolage Grotesque', sans-serif; font-size:18px; margin:28px 0 8px;">What the licensing session with Till settled</h3>
-    <p>The codebase should open source, and the reason is practical rather than ideological: it is the route into a public body's financial planning. The real asset was never the code. It is the protocol layer, the conditions library, and the trust ledger that build up through use. That distinction, more than any single licence, is what came out of that session.</p>
+    <h3 style="font-family:'Bricolage Grotesque', sans-serif; font-size:18px; margin:28px 0 8px;">3. Lead markets begin with diamond situations</h3>
+    <p>We should search for high-leverage coordination situations where better agreement infrastructure creates material public, operational or financial value. These situations both test the capabilities and generate the evidence needed to move towards more consequential use cases and institutional adoption.</p>
   </section>
 
   <section id="reframe">
     <span class="section-num mono">§ 03 · THE REFRAME</span>
-    <h2>Computational Agreementing <span class="stamp progress">Team direction, not yet formally adopted</span></h2>
-    <p class="lead">Every space, asset, or regulated domain we've looked at turns out to be the same problem: several parties hold conditions that cannot all be satisfied through one negotiating at a time.</p>
-    <p>Sequential negotiation is the pathology. One party settles with the next, who settles with the next, and by the time the chain closes, the first party's situation has already moved on. Computational Agreementing holds every party's conditions at once and finds the configuration that satisfies the most of them together, then keeps that configuration open to renegotiation as circumstances change.</p>
-    <p>We define it as a constitutionally governed, machine-assisted practice for composing, testing, and recomposing versioned conditional commitments across open fields of human, institutional, and delegated computational agency. The word "agreementing" is deliberate: it names an ongoing practice of composing and reopening, not a single signed event.</p>
-    <p>Four objects carry the architecture:</p>
+    <h2>Agreement infrastructure <span class="stamp progress">Working direction</span></h2>
+    <p class="lead">The shift is from fixing one agreement to governing a bounded space of authorised possibilities.</p>
+    <p>A point agreement fixes one configuration and assumes it will remain viable. A parametric agreement space authorises a bounded range of possible configurations, together with the conditions, evidence and rules governing movement between them.</p>
+    <p>As circumstances change, the active configuration can move or recompose within that authorised space. If no viable configuration remains, the system returns to the parties.</p>
+    <div class="compact-note"><p><strong>The constitutional rule:</strong> computation may search, recommend and operate within authority already granted. The authorised boundary stays explicit and fixed until the parties renew it; any expansion of scope or consent returns to them.</p></div>
+    <p><strong>Agreementing</strong> names this ongoing practice and sits underneath the clearer external proposition of <strong>agreement infrastructure</strong>. Deliberation, verification, negotiation, authorisation, activation and learning are constituent processes within it.</p>
+  </section>
+
+  <section id="ruling">
+    <span class="section-num mono">§ 04 · FUZZY RULING</span>
+    <h2>Stability where needed; adaptability where justified</h2>
+    <p class="lead">Fuzzy ruling is the capacity to distinguish what must remain fixed, what can vary by condition, and what should return to collective judgement as circumstances and evidence change.</p>
+    <p>The Berlin discussions distinguished between rules that provide stability, conditions that allow bounded variation, and situations that require renewed judgement. Some decision premises become obsolete, conflict with context, or repeatedly produce poor outcomes. Civic Ledger should make these differences visible and learnable.</p>
     <ul class="object-list">
-      <li><span class="object-name">Agreement field</span><span class="object-desc">The governed environment, institutional and computational, within which parties operate.</span></li>
-      <li><span class="object-name">Agreement frontier</span><span class="object-desc">The set of currently admissible, viable configurations on offer, not one hidden optimum.</span></li>
-      <li><span class="object-name">Agreement configuration</span><span class="object-desc">One inspectable, exactly versioned package of commitments a party can accept.</span></li>
-      <li><span class="object-name">Commitment graph</span><span class="object-desc">The offers, dependencies, and capacity reservations a configuration is built from.</span></li>
+      <li><span class="object-name">Hard boundaries</span><span class="object-desc">Make existing rules, rights and non-negotiable constraints explicit so people can see the decision environment they are operating within.</span></li>
+      <li><span class="object-name">Conditional ruling</span><span class="object-desc">Within those boundaries, allow context, evidence, responsibility and liability to shape which configurations become permissible.</span></li>
+      <li><span class="object-name">Living constitutional layer</span><span class="object-desc">Where genuine uncertainty or repeated failure exposes the limits of existing rules, surface that uncertainty, preserve contestation, and create a governed route for rules and decision premises to evolve.</span></li>
     </ul>
+    <div class="compact-note"><p><strong>Fuzzy ruling depends on precise authority.</strong> Search and learning can remain open-ended; authorisation, rights, evidence, versioning and the point at which a case returns to human judgement remain explicit.</p></div>
   </section>
 
-  <section id="guardrails">
-    <span class="section-num mono">§ 04 · GUARDRAILS</span>
-    <h2>What the architecture is not allowed to do</h2>
-    <p>A handful of constitutional guardrails set the limits the system has to hold to, whatever domain it operates in.</p>
-    <ol class="guardrail-list">
-      <li>Every commitment traces to an accountable mandate and an exact version. Nothing changes silently.</li>
-      <li>Faster closure can never come at the cost of a party's practical right to refuse or appeal.</li>
-      <li>The machine layer recommends. It does not authorise.</li>
-      <li>Selective disclosure can narrow what is shown, but never hide liability or externalised harm.</li>
-      <li>The system exposes a range of workable configurations. It does not collapse to one opaque answer.</li>
-    </ol>
+  <section id="metadesign">
+    <span class="section-num mono">§ 05 · META-DESIGN</span>
+    <h2>Design a grammar for situated response</h2>
+    <p class="lead">As Civic Ledger moves towards agreement infrastructure, UX becomes part of the constitutional architecture: it shapes how intentions are interpreted, permissions are scoped, commitments become durable, and people retain the capacity to revise, refuse or exit.</p>
+    <p>Registration exposed this clearly. The system moves from <strong>human expression → agent interpretation → institutional action</strong>. Each consequential step can operate as a reversible micro-agreement: <strong>elicit → interpret → reflect → explain use → scope permission → confirm → write → expire or revisit</strong>.</p>
+    <ul class="object-list">
+      <li><span class="object-name">Human expression</span><span class="object-desc">Start from lived intent, needs and boundaries, preserving the person's original language alongside any structured interpretation.</span></li>
+      <li><span class="object-name">Machine interpretation</span><span class="object-desc">Keep inference tentative, inspectable and revisable; show what the system thinks it has understood before that interpretation becomes operative.</span></li>
+      <li><span class="object-name">Institutional action</span><span class="object-desc">Make the transition into a durable profile, permission, credential, match or commitment explicit, scoped and reversible.</span></li>
+    </ul>
+    <p><strong>Meta-design</strong> is the capability to design the response architecture governing how language, visual form, timing, sequence, permissions and machine initiative adapt to person, purpose, place and moment. Rights, provenance, purpose, selective disclosure and refusal remain stable; tone, prompting, visual density, sequence and degree of machine assistance can adapt with the situation.</p>
+    <div class="compact-note"><p><strong>UX implication:</strong> registration, search and space registration should begin from intent, context and conditions, then generate an appropriate interaction. This moves Civic Ledger towards a situated grammar of participation and agreement, with fixed screens serving as expressions of that deeper architecture.</p></div>
+    <p>The capability gap sits across <strong>linguistics, communication, visual and interaction design, computational logic and spacetime-contingent thinking</strong>: designing how the system senses, asks, hesitates, adapts and learns as the situation changes.</p>
   </section>
 
-  <section id="typology">
-    <span class="section-num mono">§ 05 · THE LANDSCAPE</span>
-    <h2>Where the platform's value actually sits</h2>
-    <p>Every candidate we looked at, from hospital beds to rooftop furniture, sits somewhere on the same two axes: how permanent the asset is, and what it costs when coordination fails. Mapping them together shows why we're starting where we are, and where the platform is headed next.</p>
+  <section id="capabilities">
+    <span class="section-num mono">§ 06 · THE CAPABILITIES WE ARE BUILDING</span>
+    <h2>Five capability families, held by a constitutional layer</h2>
+    <ul class="object-list">
+      <li><span class="object-name">Legibility</span><span class="object-desc">Make intent, standing, mandates, affected parties, dependencies and shared desired conditions visible enough to form systemic intentionality and act.</span></li>
+      <li><span class="object-name">Deliberation &amp; assurance</span><span class="object-desc">Support bounded deliberation, peer and multilateral verification, evidence, proof and accountable responsibility.</span></li>
+      <li><span class="object-name">Differentiated composition &amp; commitment</span><span class="object-desc">Generate possible pathways; compose distinct actors, mandates, resources, dependencies, risks and responsibilities into viable configurations; and form conditional commitments while preserving their distinct roles and authority.</span></li>
+      <li><span class="object-name">Activation &amp; adaptation</span><span class="object-desc">Route resources, responsibilities and risks; activate authorised commitments; recompose within agreed boundaries; and escalate when those boundaries are exhausted.</span></li>
+      <li><span class="object-name">Learning &amp; evolution</span><span class="object-desc">Observe outcomes, detect patterns and externalities, contest and revise, evolve rules, and leave institutional memory that expands future optionality.</span></li>
+    </ul>
+    <p><strong>Across all five:</strong> authority, rights, refusal, contestability, appeal, versioning and affected-party standing define what the system is allowed to do.</p>
+    <div class="compact-note"><p><strong>Coordination and composition:</strong> coordination is the wider capacity for distributed action to remain mutually intelligible and capable of producing consequence. Differentiated composition is the generative operation within it: constructing actionable configurations from actors and contributions that remain distinct.</p></div>
+  </section>
+
+  <section id="markets">
+    <span class="section-num mono">§ 07 · LEAD-MARKET SEARCH</span>
+    <h2>Find diamond situations that matter and teach us something</h2>
+    <p>The unit of search is a <strong>coordination situation</strong>: a specific configuration of actors, constraints, stakes and recurring decisions. Berlin also exposed an ambition trap: small funding can recursively shrink the problem being solved. Low-stakes cases provide a learning environment; the horizon is defined by where the capabilities become consequential. A strong candidate has a real coordination failure, can be bounded and governed, and gives us a credible route to practice.</p>
+
+    <div class="diamond-grid">
+      <div class="diamond-card"><h3>Does it matter?</h3><p>Material coordination or failure cost; genuine multi-party interdependence; changing conditions; measurable consequence; repeatability.</p></div>
+      <div class="diamond-card"><h3>Can it be governed?</h3><p>Legible states and evidence; identifiable mandates and responsibilities; room for conditional commitments; tractable risk and liability; rights and refusal protected.</p></div>
+      <div class="diamond-card"><h3>Can we enter it?</h3><p>A credible convenor; a legitimate route to authority; access to participants and data; a bounded first experiment; and a plausible payer or funding route.</p></div>
+    </div>
+
+    <h3 style="font-family:'Bricolage Grotesque', sans-serif; font-size:18px; margin:30px 0 8px;">A portfolio horizon for capability development</h3>
+    <p>The A–E map now serves as a capability horizon. Reframed around <strong>coordination complexity</strong> and <strong>stakes of failure</strong>, it shows how the same capability families could support increasingly complex forms of distributed composition and coordinated action. The diamond test above determines where we actually enter.</p>
 
     <div class="plot-wrap">
-      <svg viewBox="0 0 760 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Scatter plot mapping five clusters of civic infrastructure against permanence of the asset and stakes and failure cost">
+      <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustrative portfolio mapping coordination situations by coordination complexity and stakes and failure cost">
         <defs>
-          <linearGradient id="stakesGradient" x1="0" y1="0" x2="0" y2="1">
+          <linearGradient id="stakesGradientV8" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stop-color="#93402B" stop-opacity="0.10"/>
             <stop offset="100%" stop-color="#93402B" stop-opacity="0"/>
           </linearGradient>
         </defs>
+        <rect x="150" y="30" width="620" height="370" fill="url(#stakesGradientV8)"/>
+        <line x1="150" y1="215" x2="770" y2="215" stroke="#DED5BE" stroke-width="1" stroke-dasharray="3,4"/>
+        <line x1="460" y1="30" x2="460" y2="400" stroke="#DED5BE" stroke-width="1" stroke-dasharray="3,4"/>
+        <line x1="150" y1="30" x2="150" y2="400" stroke="#201D18" stroke-width="1.4"/>
+        <line x1="150" y1="400" x2="770" y2="400" stroke="#201D18" stroke-width="1.4"/>
+        <text x="150" y="420" class="tick-label" text-anchor="start">BOUNDED / FEW ACTORS</text>
+        <text x="460" y="420" class="tick-label" text-anchor="middle">INTERDEPENDENT</text>
+        <text x="770" y="420" class="tick-label" text-anchor="end">SYSTEMIC / MANY DEPENDENCIES</text>
+        <text x="460" y="442" class="axis-title" text-anchor="middle">COORDINATION COMPLEXITY</text>
+        <text x="132" y="399" class="tick-label" text-anchor="end">LOW</text>
+        <text x="132" y="219" class="tick-label" text-anchor="end">CONSEQUENTIAL</text>
+        <text x="132" y="39" class="tick-label" text-anchor="end">EXISTENTIAL</text>
+        <text x="30" y="215" class="axis-title" text-anchor="middle" transform="rotate(-90 30 215)">STAKES AND FAILURE COST</text>
 
-        <rect x="60" y="40" width="660" height="360" fill="url(#stakesGradient)"/>
-
-        <!-- gridlines -->
-        <line x1="60" y1="220" x2="720" y2="220" stroke="#DED5BE" stroke-width="1" stroke-dasharray="3,4"/>
-        <line x1="390" y1="40" x2="390" y2="400" stroke="#DED5BE" stroke-width="1" stroke-dasharray="3,4"/>
-
-        <!-- axes -->
-        <line x1="60" y1="40" x2="60" y2="400" stroke="#201D18" stroke-width="1.4"/>
-        <line x1="60" y1="400" x2="720" y2="400" stroke="#201D18" stroke-width="1.4"/>
-
-        <!-- x ticks -->
-        <text x="60" y="420" class="tick-label" text-anchor="start">TEMPORARY &amp; MICRO</text>
-        <text x="390" y="420" class="tick-label" text-anchor="middle">SEMI-PERMANENT</text>
-        <text x="720" y="420" class="tick-label" text-anchor="end">FIXED INFRASTRUCTURE</text>
-        <text x="390" y="442" class="axis-title" text-anchor="middle">PERMANENCE OF THE ASSET →</text>
-
-        <!-- y ticks -->
-        <text x="52" y="404" class="tick-label" text-anchor="end">WELFARE</text>
-        <text x="52" y="224" class="tick-label" text-anchor="end">HIGH-CONSEQUENCE</text>
-        <text x="52" y="48" class="tick-label" text-anchor="end">EXISTENTIAL</text>
-        <text x="24" y="220" class="axis-title" text-anchor="middle" transform="rotate(-90 24 220)">STAKES AND FAILURE COST →</text>
-
-        <!-- Cluster D: micro & temporary spatial infrastructure -->
-        <ellipse cx="139" cy="346" rx="85" ry="50" fill="#3E6355" fill-opacity="0.14" stroke="#3E6355" stroke-width="1.3" stroke-dasharray="4,3"/>
-        <circle cx="139" cy="346" r="15" fill="#F6F2E7" stroke="#3E6355" stroke-width="1.3"/>
-        <text x="139" y="352" class="cluster-letter" text-anchor="middle">D</text>
-
-        <!-- Cluster E: liquid civic assets & solidarity economy -->
-        <ellipse cx="245" cy="274" rx="105" ry="58" fill="#3E6355" fill-opacity="0.20" stroke="#3E6355" stroke-width="1.3" stroke-dasharray="4,3"/>
-        <circle cx="245" cy="274" r="15" fill="#F6F2E7" stroke="#3E6355" stroke-width="1.3"/>
-        <text x="245" y="280" class="cluster-letter" text-anchor="middle">E</text>
-
-        <!-- Cluster B: climate resilience spaces -->
-        <ellipse cx="364" cy="184" rx="130" ry="65" fill="#3E6355" fill-opacity="0.28" stroke="#3E6355" stroke-width="1.4"/>
-        <circle cx="364" cy="184" r="15" fill="#F6F2E7" stroke="#3E6355" stroke-width="1.4"/>
-        <text x="364" y="190" class="cluster-letter" text-anchor="middle">B</text>
-
-        <!-- Cluster C: water and soil systems -->
-        <ellipse cx="588" cy="155" rx="95" ry="48" fill="#3E6355" fill-opacity="0.34" stroke="#3E6355" stroke-width="1.4"/>
-        <circle cx="588" cy="155" r="15" fill="#F6F2E7" stroke="#3E6355" stroke-width="1.4"/>
-        <text x="588" y="161" class="cluster-letter" text-anchor="middle">C</text>
-
-        <!-- Cluster A: emergency critical infrastructure -->
-        <ellipse cx="535" cy="76" rx="170" ry="70" fill="#93402B" fill-opacity="0.20" stroke="#93402B" stroke-width="1.6"/>
-        <circle cx="535" cy="76" r="15" fill="#F6F2E7" stroke="#93402B" stroke-width="1.6"/>
-        <text x="535" y="82" class="cluster-letter" text-anchor="middle">A</text>
+        <ellipse cx="225" cy="348" rx="76" ry="48" fill="#3E6355" fill-opacity="0.14" stroke="#3E6355" stroke-width="1.3" stroke-dasharray="4,3"/>
+        <circle cx="225" cy="348" r="15" fill="#F6F2E7" stroke="#3E6355" stroke-width="1.3"/><text x="225" y="354" class="cluster-letter" text-anchor="middle">D</text>
+        <ellipse cx="330" cy="285" rx="94" ry="57" fill="#3E6355" fill-opacity="0.20" stroke="#3E6355" stroke-width="1.3" stroke-dasharray="4,3"/>
+        <circle cx="330" cy="285" r="15" fill="#F6F2E7" stroke="#3E6355" stroke-width="1.3"/><text x="330" y="291" class="cluster-letter" text-anchor="middle">E</text>
+        <ellipse cx="438" cy="195" rx="116" ry="64" fill="#3E6355" fill-opacity="0.28" stroke="#3E6355" stroke-width="1.4"/>
+        <circle cx="438" cy="195" r="15" fill="#F6F2E7" stroke="#3E6355" stroke-width="1.4"/><text x="438" y="201" class="cluster-letter" text-anchor="middle">B</text>
+        <ellipse cx="625" cy="155" rx="88" ry="50" fill="#93402B" fill-opacity="0.16" stroke="#93402B" stroke-width="1.5"/>
+        <circle cx="625" cy="155" r="15" fill="#F6F2E7" stroke="#93402B" stroke-width="1.5"/><text x="625" y="161" class="cluster-letter" text-anchor="middle">C</text>
+        <ellipse cx="600" cy="78" rx="152" ry="68" fill="#93402B" fill-opacity="0.20" stroke="#93402B" stroke-width="1.6"/>
+        <circle cx="600" cy="78" r="15" fill="#F6F2E7" stroke="#93402B" stroke-width="1.6"/><text x="600" y="84" class="cluster-letter" text-anchor="middle">A</text>
       </svg>
-
-      <div class="reg-key">
-        <span><span class="reg-swatch" style="background:#93402B; opacity:0.9;"></span>heavily regulated</span>
-        <span><span class="reg-swatch" style="background:#3E6355; opacity:0.6;"></span>conditionally regulated</span>
-        <span><span class="reg-swatch" style="background:#3E6355; opacity:0.2; border:1px dashed #3E6355;"></span>lightly regulated</span>
-      </div>
+      <p class="reg-note">Illustrative positioning. Outline and fill indicate increasing regulatory density, from lightly governed practice to heavily regulated critical systems.</p>
     </div>
 
-    <div class="cluster-block">
-      <div class="cluster-head"><span class="cluster-tag">A</span><span class="cluster-name">Emergency critical infrastructure</span></div>
-      <p>Existential stakes, heavy regulation, multiple institutional parties, cascading dependencies. Hardest to enter. Highest value if entered correctly.</p>
-      <div class="chip-row">
-        <span class="chip">hospital beds</span>
-        <span class="chip">ICU surge capacity</span>
-        <span class="chip">emergency shelter</span>
-        <span class="chip">bunkers &amp; civil defence</span>
-        <span class="chip">disaster food &amp; housing logistics</span>
-      </div>
-    </div>
+    <div class="cluster-block"><div class="cluster-head"><span class="cluster-tag">A</span><span class="cluster-name">Emergency critical infrastructure</span></div><p>Hospital surge capacity, emergency shelter, civil defence and crisis logistics.</p></div>
+    <div class="cluster-block"><div class="cluster-head"><span class="cluster-tag">B</span><span class="cluster-name">Climate resilience and distributed refuge</span></div><p>Cooling and heating networks, neighbourhood resilience spaces and distributed shelter.</p></div>
+    <div class="cluster-block"><div class="cluster-head"><span class="cluster-tag">C</span><span class="cluster-name">Essential resource systems</span></div><p>Water, soil, energy and other systems where dependencies cross institutions and jurisdictions.</p></div>
+    <div class="cluster-block"><div class="cluster-head"><span class="cluster-tag">D</span><span class="cluster-name">Micro and temporary spatial coordination</span></div><p>Events, temporary uses and other bounded cases where capabilities can be tested quickly and visibly.</p></div>
+    <div class="cluster-block"><div class="cluster-head"><span class="cluster-tag">E</span><span class="cluster-name">Distributed care and solidarity economy</span></div><p>Community kitchens, care networks, shared assets and other trust-dependent forms of mutual provision.</p></div>
 
-    <div class="cluster-block">
-      <div class="cluster-head"><span class="cluster-tag">B</span><span class="cluster-name">Climate resilience spaces</span></div>
-      <p>Growing government mandate, distributed asset holders, no existing coordination tool. The most actionable cluster in the near term.</p>
-      <div class="chip-row">
-        <span class="chip">cooling centres</span>
-        <span class="chip">dynamic heating &amp; cooking spaces</span>
-        <span class="chip">green infrastructure access</span>
-        <span class="chip">neighbourhood climate compacts</span>
-      </div>
+    <p>The development path is deliberately progressive and recursive:</p>
+    <div class="flow" aria-label="Development path from bounded practice to institutional adoption">
+      <span class="flow-step">bounded practice</span><span class="flow-arrow">→</span>
+      <span class="flow-step">capability testing</span><span class="flow-arrow">→</span>
+      <span class="flow-step">evidence</span><span class="flow-arrow">→</span>
+      <span class="flow-step">infrastructure maturity</span><span class="flow-arrow">→</span>
+      <span class="flow-step">more consequential situations</span><span class="flow-arrow">→</span>
+      <span class="flow-step">institutional adoption</span>
     </div>
+    <p>Movement-building and lead-market discovery run in parallel throughout. The aim is to find situations that both matter and force the underlying capabilities to mature.</p>
 
-    <div class="cluster-block">
-      <div class="cluster-head"><span class="cluster-tag">C</span><span class="cluster-name">Water and soil systems</span></div>
-      <p>Fragmented authority, sequential negotiation, uncoordinated planning. The coordination failure sits well ahead of the infrastructure gap.</p>
-      <div class="chip-row">
-        <span class="chip">water access governance</span>
-        <span class="chip">soil provenance compacts</span>
-        <span class="chip">watershed coordination</span>
-      </div>
-    </div>
-
-    <div class="cluster-block">
-      <div class="cluster-head"><span class="cluster-tag">D</span><span class="cluster-name">Micro and temporary spatial infrastructure</span></div>
-      <p>Low regulatory barrier, fast activation, conditions mostly social rather than legal. Where trust in the deliberation layer gets built first.</p>
-      <div class="chip-row">
-        <span class="chip">flatpack community furniture</span>
-        <span class="chip">modular cooling shelters</span>
-        <span class="chip">rooftop pavilions</span>
-      </div>
-    </div>
-
-    <div class="cluster-block">
-      <div class="cluster-head"><span class="cluster-tag">E</span><span class="cluster-name">Liquid civic assets and solidarity economy</span></div>
-      <p>Informal or semi-formal, trust-dependent, difficult to scale without a conditions layer to hold it.</p>
-      <div class="chip-row">
-        <span class="chip">spare rooms &amp; couches in crisis</span>
-        <span class="chip">community kitchens</span>
-        <span class="chip">immigrant food economies</span>
-        <span class="chip">asset transfer to cooperatives</span>
-      </div>
+    <div class="horizon-row" aria-label="Illustrative coordination situations">
+      <span class="horizon-chip">heat refuge across distributed buildings</span>
+      <span class="horizon-chip">distributed care</span>
+      <span class="horizon-chip">shared grid capacity</span>
+      <span class="horizon-chip">port and berth coordination</span>
+      <span class="horizon-chip">hospital surge capacity</span>
+      <span class="horizon-chip">food distribution in crisis</span>
+      <span class="horizon-chip">emergency shelter and civil defence</span>
+      <span class="horizon-chip">water allocation under changing conditions</span>
     </div>
   </section>
 
-  <section id="markets">
-    <span class="section-num mono">§ 06 · WHERE WE'RE TESTING IT</span>
-    <h2>Two arcs, running at the same time</h2>
-    <p>Rather than searching for a single lead market, we're running a near-term demonstration alongside a longer commercial arc, with two further directions developing in parallel.</p>
-
-    <div class="market-card">
-      <span class="market-tag">Demonstration · In progress</span>
-      <h3>Berlin cooling and dynamic resilience spaces</h3>
-      <p>Coordinating providers, conditions, and liability for cooling and resilience spaces across a city, alongside a live micro spatial activation pilot already running with RMIT and UTS collaborators in Incheon.</p>
-    </div>
-
-    <div class="market-card">
-      <span class="market-tag">Commercial · Exploring</span>
-      <h3>Climate resilience insurance compacts</h3>
-      <p>Insurers hold capital for climate resilience but cannot currently underwrite it, lacking a way to verify that distributed commitments have been made and kept. This is the verification layer the platform can provide.</p>
-    </div>
-
-    <div class="market-card">
-      <span class="market-tag">Parallel directions · Early</span>
-      <h3>Care, and food and soil provenance</h3>
-      <p>Both surfaced strongly in Berlin as longer-arc directions: distributed, multi-party care coordination, and provenance agreements built from combined data across a supply chain. Neither is a near-term entry point yet, but both are worth developing in the open.</p>
-    </div>
+  <section id="economy">
+    <span class="section-num mono">§ 08 · THE CIVIC-TECH ECONOMY</span>
+    <h2>Fund risk while preserving shared value</h2>
+    <p>Structural civic infrastructure needs financing beyond grants, philanthropy and borrowed infrastructure. The economic challenge is to absorb risk-taking capital at sufficient scale while bounding returns, preserving long-term stewardship and keeping the underlying capabilities accessible.</p>
+    <p>One direction is to <strong>bound the return to risk</strong>: capped, time-limited returns that recognise early investment, after which core technology can open. Open licensing still requires stewardship, maintenance, governance and institutions capable of holding responsibilities around code, data, IP and continued development.</p>
+    <div class="compact-note"><p><strong>The wider economic stack:</strong> multi-party contribution and commitment mechanisms; accounting and legal ledgers that can hold heterogeneous commitments; stewardship and licensing; and financing structures aligned with long-term common value.</p></div>
+    <p>The opportunity is a multi-actor economy in which distributed responsibilities, risks, commitments and resources become composable, with decision rights remaining explicit across participants.</p>
   </section>
 
   <section id="evidence">
-    <span class="section-num mono">§ 07 · EARLY EVIDENCE</span>
-    <h2>What the living lab data is already showing</h2>
+    <span class="section-num mono">§ 09 · EARLY EVIDENCE</span>
+    <h2>The value may already sit in the coordination experience</h2>
     <div class="stat-block">
       <span class="stat-num mono">0.62</span>
-      <span class="stat-desc">Correlation between deliberation satisfaction and willingness to recommend the platform, the strongest predictor found in the Yongin living lab data, ahead of overall satisfaction or interface quality.</span>
+      <span class="stat-desc">Correlation between deliberation satisfaction and willingness to recommend Civic Ledger in the Yongin living lab data, stronger than overall satisfaction or interface quality.</span>
     </div>
-    <p>The people who use it recommend it because of the experience of negotiating and reaching agreement with each other, not simply because they got access to a space. That is the thing worth building around.</p>
+    <p>This early evidence supports the strategic shift: people may value Civic Ledger for the coordination experience itself, including negotiating, understanding and acting with others alongside access to space.</p>
+  </section>
+
+  <section id="gathering">
+    <span class="section-num mono">§ 10 · NEXT CIVIC LEDGER GATHERING</span>
+    <h2>17 to 20 October, Berlin</h2>
+    <p>Exact dates within this window are still being confirmed. The gathering will bring together the initial Civic Ledger collective to test the emerging coordination capabilities, review evidence from current pilots, and identify the next diamond situations and institutional partners.</p>
   </section>
 
   <footer>
-    <span class="mono">Next Civic Ledger gathering</span>
-    <div class="contact-line">17 to 18 October, Berlin</div>
     <span class="mono">Get in touch</span>
     <div class="contact-line" style="font-size:18px;"><a href="mailto:civicledger@darkmatterlabs.org">civicledger@darkmatterlabs.org</a></div>
     <div class="footer-meta">
       <span class="mono">Civic Ledger · Dark Matter Labs</span>
-      <span class="mono">Berlin Learnings · August 2026</span>
+      <span class="mono">v12 · Last updated 19 August 2026</span>
     </div>
   </footer>
 
